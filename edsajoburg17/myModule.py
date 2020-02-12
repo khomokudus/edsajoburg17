@@ -141,6 +141,7 @@ def five_num_summary(items):
         q3_index = len(items) - q1_index + 1
         q3_value = items[int(q3_index)-1]
 
+    # return a dictionary of the five number summary
     return {'max':round(items_array.max(),2),
             'median':round(median,2),
             'min':round(items_array.min(),2),
