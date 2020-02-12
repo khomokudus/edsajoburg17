@@ -72,12 +72,8 @@ def dictionary_of_metrics(items):
 
         Example:
             >>> dictionary_of_metrics([1,2,3,4,5])
-            {'mean': 3.0,
-            'median': 3,
-            'variance': 2.5,
-            'standard deviation': 1.58,
-            'min': 1,
-            'max': 5}
+            {'mean': 3.0, 'median': 3, 'variance': 2.5, 'standard deviation': 1.58,
+            'min': 1, 'max': 5}
     '''
     # sort the list and create an array
     items.sort()
@@ -97,6 +93,7 @@ def dictionary_of_metrics(items):
            'standard deviation':round((items_array.var(ddof=1))**(1/2),2),
            'min':round(items_array.min(),2),
            'max':round(items_array.max(),2)}
+
 ### END FUNCTION
 
 # Function 2: Five Number Summary
@@ -214,7 +211,8 @@ def extract_municipality_hashtags(df):
 
     # define a function to find the # phrases from the 'Tweets' column
     def hh(df):
-        uu = []
+        
+        uu = [] # empty list to store the hastag phrases
         if '#' in df:
             uu.append(df.split())
             rr=[]
@@ -223,6 +221,7 @@ def extract_municipality_hashtags(df):
                     rr.append(mm.lower())
             return rr
 
+        # if there isn't any hashtags return 'NaN'
         else:
             return np.nan
             
