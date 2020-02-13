@@ -211,7 +211,7 @@ def extract_municipality_hashtags(df):
 
     # define a function to find the # phrases from the 'Tweets' column
     def hh(df):
-        
+
         uu = [] # empty list to store the hastag phrases
         if '#' in df:
             uu.append(df.split())
@@ -224,7 +224,7 @@ def extract_municipality_hashtags(df):
         # if there isn't any hashtags return 'NaN'
         else:
             return np.nan
-            
+
     # create a new column 'hastags'
     df['hastags'] = df['Tweets'].apply(lambda y: hh(y))
 
@@ -232,3 +232,28 @@ def extract_municipality_hashtags(df):
     return df
 
 ### END FUNCTION
+
+#Function 5: Number of Tweets per Day
+def number_of_tweets_per_day(df):
+    ''' returns a dataframe with the number of tweets per day
+
+        Keyword argument:
+        df (dataframe): Eskom dataframe
+
+        Returns:
+        dataframe:  a new dataframe with the date as the index
+        
+    '''
+    # get the date in the 'yyyy-mm-dd' format
+    df['Date']=df['Date'].apply(lambda x: x.split(' ')[0])
+
+    # create a new dataframe tt with the no of tweets per day
+    tt = pd.DataFrame(pd.to_datetime(df['Date'],format = '%Y/%m/%d').value_counts())
+
+    tt.rename_axis('Date',inplace=True)
+
+    tt.rename(columns={'Date':'Tweets'},inplace=True)
+    # sorts the dataframe by the index
+    tt.sort_index(inplace=True)
+
+    return tt
