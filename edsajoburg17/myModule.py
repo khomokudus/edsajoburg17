@@ -2,6 +2,23 @@
 import numpy as np
 import pandas as pd
 
+# import data and convert it to a dataframe
+ebp_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/electrification_by_province.csv'
+ebp_df = pd.read_csv(ebp_url)
+
+for col, row in ebp_df.iloc[:,1:].iteritems():
+    ebp_df[col] = ebp_df[col].str.replace(',','').astype(int)
+
+# read a csv file to twitter_df as a dataframe
+twitter_url = 'https://raw.githubusercontent.com/Explore-AI/Public-Data/master/Data/twitter_nov_2019.csv'
+twitter_df = pd.read_csv(twitter_url)
+
+# gauteng ebp data as a list
+gauteng = ebp_df['Gauteng'].astype(float).to_list()
+
+# dates for twitter tweets
+dates = twitter_df['Date'].to_list()
+
 # dictionary mapping municipality twitter handles to the municipality name
 mun_dict = {'@CityofCTAlerts' : 'Cape Town',
             '@CityPowerJhb' : 'Johannesburg',
@@ -211,7 +228,7 @@ def number_of_tweets_per_day(df):
 
         Returns:
         dataframe:  a new dataframe with the date as the index
-        
+
     '''
     # get the date in the 'yyyy-mm-dd' format
     df['Date']=df['Date'].apply(lambda x: x.split(' ')[0])

@@ -14,7 +14,6 @@ def test_functions_in_myModule():
 
 
     # Test if the function five_num_summary is working properly
-
     assert myModule.five_num_summary([1,2,3,4,5,6,7,8,9,10,11]) == {'max': 11,
                 'median': 6, 'min': 1, 'q1': 3, 'q3': 9}, 'incorrect'
 
