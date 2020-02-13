@@ -72,25 +72,17 @@ def dictionary_of_metrics(items):
 
         Example:
             >>> dictionary_of_metrics([1,2,3,4,5])
-            {'mean': 3.0, 'median': 3, 'variance': 2.5, 'standard deviation': 1.58,
-            'min': 1, 'max': 5}
+            {'mean': 3.0, 'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1, 'max': 5}
     '''
     # sort the list and create an array
     items.sort()
     items_array = np.array(items)
 
-    # calculating the median
-    if len(items)%2==0: # if the length of the list is even
-        median = (items[int((len(items)+1)/2)-1]+items[int((len(items)+1)/2)])/2
-
-    else: # length of the list is odd
-        median= items[int(len(items)/2)]
-
     # return a dictionary
     return {'mean':round(items_array.mean(),2),
-           'median':round(median,2),
-           'variance':round(items_array.var(ddof=1),2),
-           'standard deviation':round((items_array.var(ddof=1))**(1/2),2),
+           'median':round(np.percentile(items_array,50),2),
+           'var':round(items_array.var(ddof=1),2),
+           'std':round((items_array.var(ddof=1))**(1/2),2),
            'min':round(items_array.min(),2),
            'max':round(items_array.max(),2)}
 
@@ -109,41 +101,18 @@ def five_num_summary(items):
 
         Example:
         >>> five_num_summary([11,1,3,5,8,9,4,10,2,6,7])
-            {'max': 11, 'median': 6, 'min': 1, 'q1': 3, 'q3': 8}
+           {'max': 11, 'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}
     '''
     # sort the list and create an array
     items.sort()
     items_array = np.array(items)
 
-    med_index =(len(items)+1)/2
-
-    if len(items)%2==0:
-        # find the median
-        median = (items[int((len(items)+1)/2)-1]+items[int((len(items)+1)/2)])/2
-
-        # first quartile calculation
-        q1_index = (int(med_index)+1)/2
-        q1_value = (items[int(q1_index)]+items[int(q1_index-1)])/2
-
-        # third quartile calculation
-        q3_index = len(items)- q1_index + 1
-        q3_value = (items[int(q3_index-2)]+items[int(q3_index-1)])/2
-
-    else:
-        median= items[int(len(items)/2)]
-
-        q1_index = (int(med_index)+1)/2
-        q1_value = items[int(q1_index)-1]
-
-        q3_index = len(items) - q1_index + 1
-        q3_value = items[int(q3_index)-1]
-
     # return a dictionary of the five number summary
     return {'max':round(items_array.max(),2),
-            'median':round(median,2),
+            'median':round(np.percentile(items_array,50),2),
             'min':round(items_array.min(),2),
-            'q1':round(q1_value,2),
-            'q3':round(q3_value,2)}
+            'q1':round(np.percentile(items_array,25),2),
+            'q3':round(np.percentile(items_array,75),2)}
 
 ### END FUNCTION
 # Function 3: Date Parser
