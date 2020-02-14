@@ -89,7 +89,8 @@ def dictionary_of_metrics(items):
 
         Example:
             >>> dictionary_of_metrics([1,2,3,4,5])
-            {'mean': 3.0, 'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1, 'max': 5}
+            {'mean': 3.0, 'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1,
+            'max': 5}
     '''
     # sort the list and create an array
     items.sort()
@@ -148,7 +149,6 @@ def date_parser(dates):
         ['2019-11-29', '2019-11-29']
     '''
     return[date.split(' ')[0] for date in dates]
-
 ### END FUNCTION
 
 # Function 4: Municipality & Hashtag Detector
@@ -198,11 +198,11 @@ def extract_municipality_hashtags(df):
     # define a function to find the # phrases from the 'Tweets' column
     def hh(df):
 
-        uu = [] # empty list to store the hastag phrases
+        hastag_phrases = [] # empty list to store the hastag phrases
         if '#' in df:
-            uu.append(df.split())
+            hastag_phrases.append(df.split())
             rr=[]
-            for mm in uu[0]:
+            for mm in hastag_phrases[0]:
                 if '#' in mm:
                     rr.append(mm.lower())
             return rr
@@ -216,7 +216,6 @@ def extract_municipality_hashtags(df):
 
     # return the modified dataframe
     return df
-
 ### END FUNCTION
 
 #Function 5: Number of Tweets per Day
@@ -229,6 +228,12 @@ def number_of_tweets_per_day(df):
         Returns:
         dataframe:  a new dataframe with the date as the index
 
+        Example:
+        >>>number_of_tweets_per_day(twitter_df)
+                    Tweets
+            Date
+        2019-11-20     18
+        2019-11-21     11
     '''
     # get the date in the 'yyyy-mm-dd' format
     df['Date']=df['Date'].apply(lambda x: x.split(' ')[0])
@@ -236,10 +241,38 @@ def number_of_tweets_per_day(df):
     # create a new dataframe tt with the no of tweets per day
     tt = pd.DataFrame(pd.to_datetime(df['Date'],format = '%Y/%m/%d').value_counts())
 
+    # rename the index column
     tt.rename_axis('Date',inplace=True)
 
+    # rename the coumn to 'Tweets'
     tt.rename(columns={'Date':'Tweets'},inplace=True)
+
     # sorts the dataframe by the index
     tt.sort_index(inplace=True)
 
     return tt
+### END OF FUNCTION
+
+# Function 6: Word Splitter
+def word_splitter(df) :
+    ''' returns a list of words from a string
+
+        Keyword argument:
+        df (dataframe): dataframe with ESKOM data
+
+        Return:
+        dataframe: return a modified dataframe wiith a new columns
+
+        Example:
+        >>> word_splitter(twitter_df)
+                        Tweets          Date                Split Tweets
+        0  @BongaDlulane Please.. 2019-11-29 12:50:54  [@bongadlulane, please..]
+    '''
+    # creates a new column named 'Split Tweets'
+    df['Split Tweets'] = df['Tweets'].apply(lambda y: y.lower().split(''))
+
+    # returns a dataframe with 3 columns
+    last = df[['Tweets', 'Date', 'Split Tweets']]
+
+    return last
+### END OF FUNCTION
