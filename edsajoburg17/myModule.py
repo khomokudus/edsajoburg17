@@ -240,7 +240,7 @@ def number_of_tweets_per_day(df):
     tt.rename_axis('Date',inplace=True)
 
     # rename the coumn to 'Tweets'
-    tt.rename(columns={'Date':'Tweets'},inplace=True)
+    tt.rename(columns={'Date1':'Tweets'},inplace=True)
 
     # sorts the dataframe by the index
     tt.sort_index(inplace=True)
