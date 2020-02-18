@@ -154,7 +154,7 @@ def date_parser(dates):
 # Function 4: Municipality & Hashtag Detector
 def extract_municipality_hashtags(df):
     # your code here
-    ''' Returns a modified dataframe with two new columns.
+    ''' Returns  a modified dataframe with two new columns.
 
         Keyword argument:
         df (pandas dataframe): pandas dataframe with Eskom dataframe
