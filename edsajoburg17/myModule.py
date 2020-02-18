@@ -153,6 +153,7 @@ def date_parser(dates):
 
 # Function 4: Municipality & Hashtag Detector
 def extract_municipality_hashtags(df):
+    # your code here
     ''' Returns a modified dataframe with two new columns.
 
         Keyword argument:
@@ -160,61 +161,55 @@ def extract_municipality_hashtags(df):
 
         Returns:
         dataframe: modified dataframe with 2 new columns 'municipality' and
-                    'hastags'. The column data will be determined from the
-                    initial 'df' dataframe.
+                   'hastags'. The column data will be determined from the
+                   initial 'df' dataframe.
     '''
-
-    # clean the Date column to return the date only
-    df['Date']=df['Date'].apply(lambda x: x.split(' ')[0])
-
-    # define a function that will return the municipality name
-    def mun_func(df):
-        if '@CityofCTAlerts' in df:
-            return mun_dict['@CityofCTAlerts']
-
-        elif '@CityPowerJhb' in df:
-            return mun_dict['@CityPowerJhb']
-
-        elif '@eThekwiniM' in df:
-            return mun_dict['@eThekwiniM']
-
-        elif '@EMMInfo' in df:
-            return mun['@EMMInfo']
-
-        elif '@centlecutility' in df:
-            return mun_dict['@centlecutility']
-
-        elif '@NMBmunicipality' in df:
-            return mun_dict['@NMBmunicipality']
-
-        elif '@CityTshwane' in df:
-            return mun_dict['@CityTshwane']
-        else:
-            return np.nan
-
-    # create a new column 'municipality'
-    df['municipality'] = df['Tweets'].apply(lambda y: mun_func(y))
-
-    # define a function to find the # phrases from the 'Tweets' column
-    def hh(df):
-
-        hastag_phrases = [] # empty list to store the hastag phrases
-        if '#' in df:
-            hastag_phrases.append(df.split())
-            rr=[]
-            for mm in hastag_phrases[0]:
-                if '#' in mm:
-                    rr.append(mm.lower())
-            return rr
-
-        # if there isn't any hashtags return 'NaN'
-        else:
-            return np.nan
-
-    # create a new column 'hastags'
-    df['hastags'] = df['Tweets'].apply(lambda y: hh(y))
-
-    # return the modified dataframe
+    # Defines the function that returns municipality names
+    def mun(new):
+        ''' Returns the municipality if in a tweet from df.
+        
+            Keyword argument:
+            df (dataframe) -- dataframe of the ESKOM data
+            
+            Returns:
+            Returns a value (municipality) if the twitter handle
+            is in the tweet.
+            Else, it returns 'NaN'
+        '''
+        
+        mun_str = ''
+        # iterate individual elements in dict_key
+        for i in mun_dict.keys() :
+            if i in new:
+                mun_str += mun_dict[i]
+        if mun_str == '':
+            mun_str = np.nan
+        return mun_str
+    
+    
+    # Defines the function that returns a list of hashtags from a tweet
+    def hasht(new):
+        ''' Returns a list of hashtag phrases from a tweet.
+        
+            Keyword argument:
+            df (dataframe) -- dataframe of the ESKOM data
+            
+        '''
+        
+        hashtags_list = []
+        new_split = new.split()
+        for j in new_split:      
+            if j[0] == "#":
+                hashtags_list.append(j.lower())
+        if hashtags_list == []:
+            hashtags_list.append(np.nan)
+        return hashtags_list
+    
+    
+    # Concatenates the municipality names and hashtag lists in their respective columns
+    df['municipality'] = df['Tweets'].apply(lambda x: mun(x))
+    df['hashtags'] = df['Tweets'].apply(lambda x: hasht(x),)
+    
     return df
 ### END FUNCTION
 
