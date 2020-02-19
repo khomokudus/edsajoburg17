@@ -43,3 +43,12 @@ def test_extract_municipality_hashtags():
 
     assert myModule.extract_municipality_hashtags(twitter_df.copy())['municipality'].loc[5] ==
     'Johannesburg', 'incorrect'
+
+def test_number_of_tweets_per_day():
+    '''
+    Test if the number_of_tweets_per_day function works properly.
+    '''
+    assert myModule.number_of_tweets_per_day(twitter_df.copy())['Tweets'].loc['2019-11-20'] == 18,
+    'incorrect'
+    assert myModule.number_of_tweets_per_day(twitter_df.copy())['Tweets'].loc['2019-11-26'] == 32,
+    'incorrect'
