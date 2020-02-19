@@ -52,3 +52,14 @@ def test_number_of_tweets_per_day():
     'incorrect'
     assert myModule.number_of_tweets_per_day(twitter_df.copy())['Tweets'].loc['2019-11-26'] == 32,
     'incorrect'
+
+def test_word_splitter():
+    '''
+    Test if the word splitter function works properly.
+    '''
+    assert myModule.word_splitter(twitter_df.copy())['Split Tweets'].loc[2] ==
+    ['@bongadlulane', 'query', 'escalated', 'to', 'media', 'desk.'], 'incorrect'
+    assert myModule.word_splitter(twitter_df.copy())['Split Tweets'].loc[90] ==
+    ['rt','@sagovnews:', 'president', '@cyrilramaphosa', 'is', 'this', 'morning',
+    'at', 'eskom’s', 'flagship', 'medupi', 'power', 'station.', 'he', 'will',
+    'tour', 'the', 'plant', 'and', 'later', 'address…']
