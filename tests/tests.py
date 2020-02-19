@@ -12,14 +12,18 @@ def test_dictionary_of_metrics():
         == {'mean': 8.19, 'median': 6.5, 'var': 48.7, 'std': 6.98, 'min': 2,
         'max': 25}, 'incorrect'
 
+def test_five_num_summary():
+    '''
+    Test if the five number summary function works properly.
+    '''
 
     # Test if the function five_num_summary is working properly
     assert myModule.five_num_summary([1,2,3,4,5,6,7,8,9,10,11]) == {'max': 11,
-                'median': 6, 'min': 1, 'q1': 3, 'q3': 9}, 'incorrect'
+        'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}, 'incorrect'
 
     assert myModule.five_num_summary([11,785,15214,415,8889,12548,1000,1250,35,
-                8,7,900,10504]) == {'max': 15214, 'median': 900, 'min': 7,
-                'q1': 35, 'q3': 10504}, 'incorrect'
+                8,7,900,10504]) == {'max': 15214, 'median': 900.0, 'min': 7,
+                'q1': 35.0, 'q3': 8889.0}, 'incorrect'
 
     # test the function date_parser:
     assert myModule.date_parser(['2019-11-29 12:50:54','2019-11-29 12:46:53',
