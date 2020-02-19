@@ -117,7 +117,7 @@ def five_num_summary(items):
 
         Example:
         >>> five_num_summary([11,1,3,5,8,9,4,10,2,6,7])
-           {'max': 11, 'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}
+            {'max': 11, 'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}
     '''
     # sort the list and create an array
     items.sort()
