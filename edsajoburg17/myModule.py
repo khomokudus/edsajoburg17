@@ -287,10 +287,8 @@ def word_splitter(df) :
     # creates a new column named 'Split Tweets'
     df['Split Tweets'] = df['Tweets'].apply(lambda y: y.lower().split(' '))
 
-    # returns a dataframe with 3 columns
-    result = df[['Tweets', 'Date', 'Split Tweets']]
 
-    return result
+    return df
 ### END OF FUNCTION
 
 # function 7: stop word remover
