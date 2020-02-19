@@ -9,6 +9,6 @@ setup(
     long_description=open('README.md').read(),
     install_requires=['numpy','pandas'],
     url='https://github.com/khomokudus/edsajoburg17',
-    author='Khomotjo Kudumela',
+    author='EDSA_Joburg2020_Team_17',
     author_email= 'khomokudus@gmail.com'
 )
