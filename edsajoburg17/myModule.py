@@ -175,7 +175,7 @@ def extract_municipality_hashtags(df):
             Else, it returns 'NaN'
         '''
 
-        mun_str = ''
+        mun_str = ''  # initialize an empty string to store the dictionary values
         # iterate individual elements in dict_key
         for i in mun_dict.keys() :
             if i in new:
@@ -193,14 +193,16 @@ def extract_municipality_hashtags(df):
             df (dataframe) -- dataframe of the ESKOM data
 
         '''
-
         hashtags_list = []
         new_split = new.split()
+
         for j in new_split:
             if j[0] == "#":
                 hashtags_list.append(j.lower())
+
         if hashtags_list == []:
             hashtags_list.append(np.nan)
+
         return hashtags_list
 
 
