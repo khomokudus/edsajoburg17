@@ -1,3 +1,26 @@
+'''
+myModule
+========
+
+The module uses ESKOM data, twitter data, a municipality dictionary and
+a stop words dictionary.
+There are seven functions described in the module.
+
+modules imported
+----------------
+1. numpy as np
+2. pandas as pd
+
+functions in the module
+-----------------------
+1. dictionary_of_metrics
+2. five_num_summary
+3. date_parser
+4. hasht
+5. number_of_tweets_per_day
+6. word_splitter
+7. stop_words_remover
+'''
 # import the numpy and pandas module from the python library
 import numpy as np
 import pandas as pd
