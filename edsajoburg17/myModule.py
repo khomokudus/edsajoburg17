@@ -285,7 +285,7 @@ def word_splitter(df) :
         0  @BongaDlulane Please.. 2019-11-29 12:50:54  [@bongadlulane, please..]
     '''
     # creates a new column named 'Split Tweets'
-    df['Split Tweets'] = df['Tweets'].apply(lambda y: y.lower().split(''))
+    df['Split Tweets'] = df['Tweets'].apply(lambda y: y.lower().split(' '))
 
     # returns a dataframe with 3 columns
     result = df[['Tweets', 'Date', 'Split Tweets']]
