@@ -265,7 +265,7 @@ def word_splitter(df) :
     df['Split Tweets'] = df['Tweets'].apply(lambda y: y.lower().split(''))
 
     # returns a dataframe with 3 columns
-    last = df[['Tweets', 'Date', 'Split Tweets']]
+    result = df[['Tweets', 'Date', 'Split Tweets']]
 
-    return last
+    return result
 ### END OF FUNCTION
