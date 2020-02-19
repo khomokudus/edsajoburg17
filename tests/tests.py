@@ -1,16 +1,16 @@
 from edsajoburg17 import myModule
 
-def test_functions_in_myModule():
+def test_dictionary_of_metrics():
     '''
-    test if dictionary_of_metrics functions works correctly
+    Test if dictionary_of_metrics functions works correctly
     '''
     assert myModule.dictionary_of_metrics([1,2,3,4,5]) ==  {'mean': 3.0,
-            'median': 3, 'variance': 2.5, 'standard deviation': 1.58, 'min': 1,
-            'max': 5}, 'incorrect'
+        'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1, 'max': 5},
+        'incorrect'
 
-    assert myModule.dictionary_of_metrics([25,25,8,7,8,9,6,2,5,8,9,6,
-                2,5,2,4]) == {'mean': 8.19, 'median': 6.5, 'variance': 48.7,
-                'standard deviation': 6.98, 'min': 2, 'max': 25}, 'incorrect'
+    assert myModule.dictionary_of_metrics([25,25,8,7,8,9,6,2,5,8,9,6,2,5,2,4])
+        == {'mean': 8.19, 'median': 6.5, 'var': 48.7, 'std': 6.98, 'min': 2,
+        'max': 25}, 'incorrect'
 
 
     # Test if the function five_num_summary is working properly
