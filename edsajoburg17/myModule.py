@@ -224,7 +224,7 @@ def extract_municipality_hashtags(df):
                 hashtags_list.append(j.lower())
 
         if hashtags_list == []:
-            hashtags_list.append(np.nan)
+            hashtags_list = np.nan
 
         return hashtags_list
 
