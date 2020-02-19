@@ -269,3 +269,36 @@ def word_splitter(df) :
 
     return result
 ### END OF FUNCTION
+
+# function 7: stop word remover
+def stop_words_remover(df):
+    # your code here
+
+
+    # create a list from the dictionary values
+    stop_words_list = list(stop_words_dict.values())[0]
+
+    # create a new column 'Without Stop Words'
+    df['Without Stop Words'] = df['Tweets'].apply(lambda y: y.lower().split(' '))
+
+    def stop_w(df):
+    
+        for i in df:
+            # initialize an empty list to store the tweet without stop words
+            without_stop_w = []
+
+            for k in df:
+                if k not in stop_words_list and k!='':
+                    without_stop_w.append(k)
+
+            return without_stop_w
+            break
+
+    # modify the new column
+    df['Without Stop Words']=df['Without Stop Words'].apply(lambda x: stop_w(x))
+
+    result = df[['Tweets','Date','Without Stop Words']]
+
+    return result
+
+### END FUNCTION
