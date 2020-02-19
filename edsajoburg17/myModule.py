@@ -190,7 +190,7 @@ def extract_municipality_hashtags(df):
         ''' Returns a list of hashtag phrases from a tweet.
 
             Keyword argument:
-            df (dataframe) -- dataframe of the ESKOM data
+            df (dataframe) -- pandas dataframe of the ESKOM data
 
         '''
         hashtags_list = []
@@ -215,16 +215,16 @@ def extract_municipality_hashtags(df):
 
 #Function 5: Number of Tweets per Day
 def number_of_tweets_per_day(df):
-    ''' returns a dataframe with the number of tweets per day
+    ''' Returns a dataframe with the number of tweets per day
 
         Keyword argument:
-        df (dataframe): Eskom dataframe
+        df (dataframe): Eskom pandas dataframe
 
         Returns:
         dataframe:  a new dataframe with the date as the index
 
         Example:
-        >>>number_of_tweets_per_day(twitter_df)
+        >>> number_of_tweets_per_day(twitter_df)
                     Tweets
             Date
         2019-11-20     18
@@ -234,18 +234,16 @@ def number_of_tweets_per_day(df):
     df['Date']=df['Date'].apply(lambda x: x.split(' ')[0])
 
     # create a new dataframe tt with the no of tweets per day
-    tt = pd.DataFrame(pd.to_datetime(df['Date'],format = '%Y/%m/%d').value_counts())
+    new_dataframe_tt = pd.DataFrame(pd.to_datetime(df['Date'],format = '%Y/%m/%d').value_counts())
 
-    # rename the index column
-    tt.rename_axis('Date',inplace=True)
-
-    # rename the coumn to 'Tweets'
-    tt.rename(columns={'Date':'Tweets'},inplace=True)
+    # rename the index and column of the dataframe
+    new_dataframe_tt.rename_axis('Date',inplace=True)
+    new_dataframe_tt.rename(columns={'Date':'Tweets'},inplace=True)
 
     # sorts the dataframe by the index
-    tt.sort_index(inplace=True)
+    new_dataframe_tt.sort_index(inplace=True)
 
-    return tt
+    return new_dataframe_tt
 ### END OF FUNCTION
 
 # Function 6: Word Splitter
