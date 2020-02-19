@@ -272,9 +272,14 @@ def word_splitter(df) :
 
 # function 7: stop word remover
 def stop_words_remover(df):
-    # your code here
+    ''' Create a new column of that returns a tweet without the stop words.
 
+        Keyword argument:
+        df (dataframe) -- dataframe of the ESKOM data
 
+        Returns:
+        a dataframe with a new column "Without Stop Words"
+    '''
     # create a list from the dictionary values
     stop_words_list = list(stop_words_dict.values())[0]
 
@@ -282,7 +287,11 @@ def stop_words_remover(df):
     df['Without Stop Words'] = df['Tweets'].apply(lambda y: y.lower().split(' '))
 
     def stop_w(df):
-    
+        ''' Returns a list created from a tweet; without any "stop word".
+
+            Keyword argument:
+            df (Dataframe) -- pandas dataframe with ESKOM data
+        '''
         for i in df:
             # initialize an empty list to store the tweet without stop words
             without_stop_w = []
