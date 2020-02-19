@@ -140,7 +140,7 @@ def date_parser(dates):
                      'yyyy-mm-dd hh:mm:ss'
 
         Returns:
-        list: list of string with the 'yyyy-mm-dd' date format
+        list: list of string in the 'yyyy-mm-dd' date format
 
         Example:
         >>> date_parser(['2019-11-29 12:50:54', '2019-11-29 12:46:10'])
