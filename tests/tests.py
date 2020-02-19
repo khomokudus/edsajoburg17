@@ -22,6 +22,7 @@ def test_five_num_summary():
     assert myModule.five_num_summary([11,785,15214,415,8889,12548,1000,1250,35,
                 8,7,900,10504]) == {'max': 15214, 'median': 900.0, 'min': 7,
                 'q1': 35.0, 'q3': 8889.0}, 'incorrect'
+
 def test_date_parser():
     '''
     Test if the date parser function works properly.
@@ -32,3 +33,13 @@ def test_date_parser():
 
     assert myModule.date_parser(['2015-12-20 11:05:01','2030-11-02 10:05:41'])==
     ['2015-12-20','2030-11-02'], 'incorrect'
+
+def test_extract_municipality_hashtags():
+    '''
+    Test if the extract municipality and hashtags function works properly.
+    '''
+    assert myModule.extract_municipality_hashtags(twitter_df.copy())['hashtags'].loc[4] ==
+    ['#eskomfreestate', '#mediastatement'], 'incorrect'
+
+    assert myModule.extract_municipality_hashtags(twitter_df.copy())['municipality'].loc[5] ==
+    'Johannesburg', 'incorrect'
