@@ -1,7 +1,9 @@
 # edsajoburg17
-This library contains a myModule; which has seven functions to work on the
+This library contains a myModule module; which has seven functions to work on
 Eskom data.
+
 The functions:
+
   1. dictionary_of_metrics
     - 'returns a dictionary with the mean, median,variance, standard deviation,
        minimum and maximum value'
@@ -24,6 +26,9 @@ The functions:
   7. stop_words_remover
     - 'removes any 'stop words' from a string if found in the dictionary of
     stop words.'
+
+The pandas module has been used to covert the ESKOM data into a pandas dataframe.
+
 
 ## building this package locally
 'python setup.py sdist'
