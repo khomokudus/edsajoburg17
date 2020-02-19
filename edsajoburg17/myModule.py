@@ -77,20 +77,18 @@ stop_words_dict = {
 
 # funtion 1: Metric Dictionary
 def dictionary_of_metrics(items):
-    ''' Returns a dictionary with the mean, median, variance, standard
-        deviation, minimum and the maximum value.
+    ''' Returns a dictionary of the five number summary.
 
         Keyword argument:
-            items (list) -- a list of number values.
+        items (list) -- a list of number values.
 
         Returns:
-            dictionary: mean, median, variance, standard deviation, the
-                        minimum and maximum value; rounded to 2 decimal places
+        dictionary: maximum value (max), median, minimum value (min),
+                    first quartile (q1) and the third quartile (q3).
 
         Example:
-            >>> dictionary_of_metrics([1,2,3,4,5])
-            {'mean': 3.0, 'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1,
-            'max': 5}
+        >>> five_num_summary([11,1,3,5,8,9,4,10,2,6,7])
+            {'max': 11, 'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}
     '''
     # sort the list and create an array
     items.sort()
@@ -167,16 +165,16 @@ def extract_municipality_hashtags(df):
     # Defines the function that returns municipality names
     def mun(new):
         ''' Returns the municipality if in a tweet from df.
-        
+
             Keyword argument:
             df (dataframe) -- dataframe of the ESKOM data
-            
+
             Returns:
             Returns a value (municipality) if the twitter handle
             is in the tweet.
             Else, it returns 'NaN'
         '''
-        
+
         mun_str = ''
         # iterate individual elements in dict_key
         for i in mun_dict.keys() :
@@ -185,31 +183,31 @@ def extract_municipality_hashtags(df):
         if mun_str == '':
             mun_str = np.nan
         return mun_str
-    
-    
+
+
     # Defines the function that returns a list of hashtags from a tweet
     def hasht(new):
         ''' Returns a list of hashtag phrases from a tweet.
-        
+
             Keyword argument:
             df (dataframe) -- dataframe of the ESKOM data
-            
+
         '''
-        
+
         hashtags_list = []
         new_split = new.split()
-        for j in new_split:      
+        for j in new_split:
             if j[0] == "#":
                 hashtags_list.append(j.lower())
         if hashtags_list == []:
             hashtags_list.append(np.nan)
         return hashtags_list
-    
-    
+
+
     # Concatenates the municipality names and hashtag lists in their respective columns
     df['municipality'] = df['Tweets'].apply(lambda x: mun(x))
     df['hashtags'] = df['Tweets'].apply(lambda x: hasht(x),)
-    
+
     return df
 ### END FUNCTION
 
