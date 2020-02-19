@@ -88,7 +88,7 @@ def dictionary_of_metrics(items):
 
         Example:
         >>> five_num_summary([11,1,3,5,8,9,4,10,2,6,7])
-            {'max': 11, 'median': 6.0, 'min': 1, 'q1': 3.5, 'q3': 8.5}
+            {'mean': 3.0, 'median': 3.0, 'var': 2.5, 'std': 1.58, 'min': 1, 'max': 5}
     '''
     # sort the list and create an array
     items.sort()
